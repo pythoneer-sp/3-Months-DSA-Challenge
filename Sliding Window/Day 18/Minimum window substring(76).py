@@ -6,8 +6,7 @@ class Solution:
         for char in t:
             d[char] = d.get(char, 0) + 1
             
-        count = 0            
-        required = len(d)
+        count = len(d)
         min_len = float('inf') 
         start_index = 0    
         
@@ -15,9 +14,9 @@ class Solution:
             if s[j] in d:
                 d[s[j]] -= 1
                 if d[s[j]] == 0:
-                    count += 1
+                    count -= 1
             
-            while count == required:
+            while count == 0:
                 if (j - i + 1) < min_len:
                     min_len = j - i + 1
                     start_index = i
@@ -25,7 +24,7 @@ class Solution:
                 if s[i] in d:
                     d[s[i]] += 1
                     if d[s[i]] > 0:
-                        count -= 1
+                        count += 1
                 
                 i += 1
 
